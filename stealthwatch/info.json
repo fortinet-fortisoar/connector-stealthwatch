@@ -1,0 +1,1346 @@
+{
+  "name": "stealthwatch",
+  "label": "Cisco Stealthwatch",
+  "description": "Stealthwatch is the solution that detects threats across your private network, public clouds, and even in encrypted traffic.",
+  "publisher": "Fortinet",
+  "cs_approved": true,
+  "cs_compatible": true,
+  "version": "2.0.0",
+  "category": "Threat Detector",
+  "icon_small_name": "Cisco_StealthWatch_32X32.png",
+  "icon_large_name": "Cisco_StealthWatch_80X80.png",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/2.0.0/cisco-stealthwatch/112/cisco-stealthwatch-v2-0-0",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server URL",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "server_url",
+        "value": "",
+        "description": "URL of the Cisco Stealthwatch server to which you will connect and perform the automated operations."
+      },
+      {
+        "title": "Username",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "username",
+        "description": "Username to access the Cisco Stealthwatch server to which you will connect and perform the automated operations."
+      },
+      {
+        "title": "Password",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "password",
+        "name": "password",
+        "description": "Password to access the Cisco Stealthwatch server to which you will connect and perform the automated operations."
+      },
+      {
+        "title": "Verify SSL",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "checkbox",
+        "name": "verify_ssl",
+        "value": true,
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. Defaults to True."
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "application_traffic_domainid",
+      "title": "Get Application Traffic by Domain ID",
+      "description": "Retrieves inbound and outbound traffic information from Cisco Stealthwatch  for the Domain (Tenant) ID and optionally a DateTime range, you have specified. If you do not specify the DateTime range then inbound and outbound traffic information is retrieved for the last 24 hours.",
+      "category": "investigation",
+      "annotation": "get_application_traffic",
+      "parameters": [
+        {
+          "title": "Domain ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "domain_id",
+          "tooltip": "Tenant ID",
+          "description": "ID of the domain for which you want to retrieve inbound and outbound traffic information from Cisco Stealthwatch."
+        },
+        {
+          "title": "Start Time",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "datetime",
+          "name": "start",
+          "description": "(Optional) Start Time from when you want to retrieve inbound and outbound traffic information from Cisco Stealthwatch.",
+          "tooltip": "If you do not specify the datetime range, then the inbound and outbound traffic information is retrieved for the last 24 hours."
+        },
+        {
+          "title": "End Time",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "datetime",
+          "name": "end",
+          "description": "(Optional) End Time till when you want to retrieve inbound and outbound traffic information from Cisco Stealthwatch.",
+          "tooltip": "If you do not specify the datetime range, then the inbound and outbound traffic information is retrieved for the last 24 hours."
+        }
+      ],
+      "enabled": true,
+      "output_schema": [
+        {
+          "timePeriod": "",
+          "applicationTrafficPerApplication": [
+            {
+              "applicationId": "",
+              "trafficOutboundBps": "",
+              "trafficWithinBps": "",
+              "applicationName": "",
+              "trafficInboundBps": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "operation": "application_traffic_hostgroupid",
+      "title": "Get Application Traffic by Host Group ID",
+      "description": "Retrieves inbound and outbound traffic information from Cisco Stealthwatch for the Host Group (tag) ID, Domain (Tenant) ID, and optionally a DateTime range, you have specified. If you do not specify the DateTime range then inbound and outbound traffic information is retrieved for the last 24 hours.",
+      "category": "investigation",
+      "annotation": "get_application_traffic",
+      "parameters": [
+        {
+          "title": "Domain ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "domain_id",
+          "tooltip": "Tenant ID",
+          "description": "ID of the domain or tenant for which you want to retrieve inbound and outbound traffic information from Cisco Stealthwatch."
+        },
+        {
+          "title": "Host Group ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "hostgroupid",
+          "tooltip": "Tag ID",
+          "description": "ID of the Host (Tag) Group for which you want to retrieve inbound and outbound traffic information from Cisco Stealthwatch."
+        },
+        {
+          "title": "Start Time",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "datetime",
+          "name": "start",
+          "description": "Start datetime from when you want to retrieve inbound and outbound traffic information.",
+          "tooltip": "If you do not specify the datetime range, then the inbound and outbound traffic information is retrieved for the last 24 hours"
+        },
+        {
+          "title": "End Time",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "datetime",
+          "name": "end",
+          "description": "End datetime till when you want to retrieve inbound and outbound traffic information.",
+          "tooltip": "If you do not specify the datetime range, then the inbound and outbound traffic information is retrieved for the last 24 hours"
+        }
+      ],
+      "enabled": true,
+      "output_schema": [
+        {
+          "timePeriod": "",
+          "applicationTrafficPerApplication": [
+            {
+              "applicationId": "",
+              "trafficOutboundBps": "",
+              "trafficWithinBps": "",
+              "applicationName": "",
+              "trafficInboundBps": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "operation": "application_traffic_ip",
+      "title": "Get Application Traffic by Exporter IP",
+      "description": "Retrieves inbound and outbound traffic information from Cisco Stealthwatch for the Domain (Tenant) ID, Flow Collector Device ID, Exporter IP address, Interface, and optionally a DateTime range you have specified. If you do not specify the DateTime range, then inbound and outbound traffic information is retrieved for the last 24 hours.",
+      "category": "investigation",
+      "annotation": "get_application_traffic",
+      "parameters": [
+        {
+          "title": "Domain ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "domain_id",
+          "tooltip": "Tenant ID",
+          "description": "ID of the domain or tenant for which you want to retrieve inbound and outbound traffic information from Cisco Stealthwatch."
+        },
+        {
+          "title": "Flow Collector Device ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "flowcollectordeviceid",
+          "description": "ID of the Flow Collector Device, which is generated by Cisco Stealthwatch for which you want to retrieve inbound and outbound traffic information from Cisco Stealthwatch. You can retrieve Flow Collector Device ID from \"Get Flow Search Results\" action."
+        },
+        {
+          "title": "Exporter IP Address",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "exporterip",
+          "description": "IP of the Exporter, such as router or switch, for which you want to retrieve inbound and outbound traffic information from Cisco Stealthwatch."
+        },
+        {
+          "title": "Interface ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "interface",
+          "description": "ID of the Interface created in Stealthwatch. You can retrieve interface id from \"Get Flow Search Results\" action."
+        },
+        {
+          "title": "Start Time",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "datetime",
+          "name": "start",
+          "description": "Start datetime from when you want to retrieve inbound and outbound traffic information."
+        },
+        {
+          "title": "End Time",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "datetime",
+          "name": "end",
+          "description": "End datetime till when you want to retrieve inbound and outbound traffic information."
+        }
+      ],
+      "enabled": true,
+      "output_schema": [
+        {
+          "timePeriod": "",
+          "applicationTrafficPerApplication": [
+            {
+              "applicationId": "",
+              "trafficOutboundBps": "",
+              "applicationName": "",
+              "trafficInboundBps": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "operation": "get_domain_details",
+      "title": "Get Domain Details",
+      "description": "Retrieves information for all the domains (tenants) from Cisco Stealthwatch.",
+      "category": "investigation",
+      "annotation": "get_domain_details",
+      "parameters": [],
+      "enabled": true,
+      "output_schema": {
+        "data": [
+          {
+            "id": "",
+            "displayName": ""
+          }
+        ]
+      }
+    },
+    {
+      "operation": "initiate_flow_search",
+      "title": "Initiate Flow Search",
+      "description": "Initiates a flow search on Cisco Stealthwatch, based on the tenant (domain) ID, search name and other filters you have specified.",
+      "category": "investigation",
+      "annotation": "initiate_flow_search",
+      "parameters": [
+        {
+          "title": "Tenant ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "tenant_id",
+          "tooltip": "Domain ID",
+          "description": "ID of the tenant or domain on which you want to initiate a flow search on Cisco Stealthwatch ."
+        },
+        {
+          "title": "Search Name",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "searchName",
+          "description": "Name for the search that you initiate on Cisco Stealthwatch ."
+        },
+        {
+          "title": "Start Time",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "datetime",
+          "name": "startDateTime",
+          "tooltip": "Must not occur after End Time",
+          "description": "Start DateTime from when you want to initiate a flow search on Cisco Stealthwatch . This value must not occur after the End Date/Time."
+        },
+        {
+          "title": "End Time",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "datetime",
+          "name": "endDateTime",
+          "description": "Start DateTime till when you want to initiate a flow search on Cisco Stealthwatch . This value must not occur before the Start Date/Time.",
+          "tooltip": "Must not occur before Start Time"
+        },
+        {
+          "title": "Number of Records",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "recordLimit",
+          "value": "1000",
+          "tooltip": "Maximum number of flow records to return. You can specify within 1-10000 range.",
+          "description": "(Optional) Maximum number of flow records that you want this operation to return from Cisco Stealthwatch . You can specify any number within the 1-10000 range."
+        },
+        {
+          "title": "Subject Host Filters",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "subject",
+          "value": {
+            "orientation": "",
+            "ipAddresses": {
+              "includes": [],
+              "excludes": []
+            },
+            "hostGroups": {
+              "includes": [],
+              "excludes": []
+            },
+            "tcpUdpPorts": {
+              "includes": [],
+              "excludes": []
+            },
+            "username": {
+              "includes": [],
+              "excludes": []
+            },
+            "byteCount": [
+              {
+                "operator": "",
+                "value": []
+              }
+            ],
+            "packetCount": [
+              {
+                "operator": "",
+                "value": []
+              }
+            ],
+            "macAddress": {
+              "includes": [],
+              "excludes": []
+            },
+            "processName": {
+              "includes": [],
+              "excludes": []
+            },
+            "processHash": {
+              "includes": [],
+              "excludes": []
+            },
+            "trustSecId": {
+              "includes": [],
+              "excludes": []
+            },
+            "trustSecName": {
+              "includes": [],
+              "excludes": []
+            }
+          },
+          "description": "(Optional) Collection of Subject Host filters in the JSON format, based on which you want to initiate a flow search on Cisco Stealthwatch. Valid parameters for the subject host filters are listed after the table."
+        },
+        {
+          "title": "Peer Host Filters",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "peer",
+          "value": {
+            "ipAddresses": {
+              "includes": [],
+              "excludes": []
+            },
+            "hostGroups": {
+              "includes": [],
+              "excludes": []
+            },
+            "tcpUdpPorts": {
+              "includes": [],
+              "excludes": []
+            },
+            "username": {
+              "includes": [],
+              "excludes": []
+            },
+            "byteCount": [
+              {
+                "operator": "",
+                "value": []
+              }
+            ],
+            "packetCount": [
+              {
+                "operator": "",
+                "value": []
+              }
+            ],
+            "macAddress": {
+              "includes": [],
+              "excludes": []
+            },
+            "processName": {
+              "includes": [],
+              "excludes": []
+            },
+            "processHash": {
+              "includes": [],
+              "excludes": []
+            },
+            "trustSecId": {
+              "includes": [],
+              "excludes": []
+            },
+            "trustSecName": {
+              "includes": [],
+              "excludes": []
+            }
+          },
+          "description": "(Optional) Collection of Peer Host filters in the JSON format, based on which you want to initiate a flow search on Cisco Stealthwatch. Valid parameters for the peer host filters are listed after the table."
+        },
+        {
+          "title": "Flow Metadata Filters",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "flow",
+          "value": {
+            "tcpUdpPorts": {
+              "includes": [],
+              "excludes": []
+            },
+            "applications": {
+              "includes": [],
+              "excludes": []
+            },
+            "flowDirection": "",
+            "byteCount": [
+              {
+                "operator": "",
+                "value": []
+              }
+            ],
+            "packetCount": [
+              {
+                "operator": "",
+                "value": []
+              }
+            ],
+            "payload": {
+              "includes": [],
+              "excludes": []
+            },
+            "tcpConnections": [
+              {
+                "operator": "",
+                "value": []
+              }
+            ],
+            "tcpRetransmissions": [
+              {
+                "operator": "",
+                "value": []
+              }
+            ],
+            "tlsVersion": [],
+            "cipherSuite": {
+              "messageAuthCode": [],
+              "keyExchange": [],
+              "authAlgorithm": [],
+              "encAlgorithm": [],
+              "keyLength": []
+            },
+            "averageRoundTripTime": [
+              {
+                "operator": "<=",
+                "value": []
+              }
+            ],
+            "averageServerResponseTime": [
+              {
+                "operator": "",
+                "value": []
+              }
+            ],
+            "flowDataSource": [
+              {
+                "flowCollectorId": "",
+                "exporters": [
+                  {
+                    "ipAddress": "",
+                    "interfaceIds": []
+                  },
+                  {
+                    "ipAddress": ""
+                  }
+                ]
+              }
+            ],
+            "protocol": [],
+            "includeInterfaceData": "",
+            "flowAction": ""
+          },
+          "description": "(Optional) Collection of Flow Metadata filters in the JSON format, based on which you want to initiate a flow search on Cisco Stealthwatch. Valid parameters for the flow metadata host filters are listed after the table."
+        }
+      ],
+      "enabled": true,
+      "output_schema": {
+        "data": {
+          "query": {
+            "id": "",
+            "domainId": "",
+            "status": "",
+            "percentComplete": ""
+          }
+        }
+      }
+    },
+    {
+      "operation": "get_flow_search_status",
+      "title": "Get Flow Search Status",
+      "description": "Retrieves the status of a specified flow search, based on the tenant (domain) ID and query ID you have specified.",
+      "parameters": [
+        {
+          "title": "Tenant ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "tenant_id",
+          "tooltip": "Domain ID",
+          "description": "ID of the tenant (domain) whose flow search status you want to retrieve from Cisco Stealthwatch ."
+        },
+        {
+          "title": "Query ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "query_id",
+          "description": "ID of the query whose flow search status you want to retrieve from Cisco Stealthwatch.\nNote: You can retrieve a Query ID using the Initiate Flow Search operation.",
+          "placeholder": "e.g 58b9394b60b2998c00cd63f7"
+        }
+      ],
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_flow_search_status",
+      "output_schema": {
+        "data": {
+          "query": {
+            "id": "",
+            "domainId": "",
+            "status": "",
+            "percentComplete": ""
+          }
+        }
+      }
+    },
+    {
+      "operation": "get_flow_search_results",
+      "title": "Get Flow Search Results",
+      "description": "Retrieves the result of a specified flow search, based on the tenant (domain) ID and query ID you have specified.",
+      "parameters": [
+        {
+          "title": "Tenant ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "tenant_id",
+          "tooltip": "Domain ID",
+          "description": "ID of the tenant (domain) whose flow search results you want to retrieve from Cisco Stealthwatch ."
+        },
+        {
+          "title": "Query ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "query_id",
+          "description": "ID of the query whose flow search result you want to retrieve from Cisco Stealthwatch.\nNote: You can retrieve a Query ID using the Initiate Flow Search operation.",
+          "placeholder": "e.g 58b9394b60b2998c00cd63f7"
+        }
+      ],
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_flow_search_results",
+      "output_schema": {
+        "data": {
+          "flows": [
+            {
+              "id": "",
+              "tenantId": "",
+              "flowCollectorId": "",
+              "mplsLabel": "",
+              "protocol": "",
+              "serviceId": "",
+              "tlsVersion": "",
+              "vlanId": "",
+              "applicationId": "",
+              "cipherSuite": {
+                "id": "",
+                "name": "",
+                "protocol": "",
+                "keyExchange": "",
+                "authAlgorithm": "",
+                "encAlgorithm": "",
+                "keyLength": "",
+                "messageAuthCode": ""
+              },
+              "statistics": {
+                "activeDuration": "",
+                "numCombinedFlowRecords": "",
+                "firstActiveTime": "",
+                "lastActiveTime": "",
+                "tcpRetransmissions": "",
+                "tcpRetransmissionsRatio": "",
+                "byteCount": "",
+                "packetCount": "",
+                "byteRate": "",
+                "packetRate": "",
+                "tcpConnections": "",
+                "roundTripTime": "",
+                "serverResponseTime": "",
+                "subjectPeerRatio": "",
+                "rttAverage": "",
+                "rttMaximum": "",
+                "rttMinimum": "",
+                "srtAverage": "",
+                "srtMaximum": "",
+                "srtMinimum": "",
+                "flowTimeSinceStart": ""
+              },
+              "subject": {
+                "hostGroupIds": [],
+                "countryCode": "",
+                "ipAddress": "",
+                "natAddress": "",
+                "natPort": "",
+                "portProtocol": {
+                  "protocol": "",
+                  "port": "",
+                  "serviceId": ""
+                },
+                "percentBytes": "",
+                "bytes": "",
+                "packets": "",
+                "byteRate": "",
+                "packetRate": "",
+                "orientation": "",
+                "finPackets": "",
+                "rstPackets": "",
+                "synPackets": "",
+                "synAckPackets": "",
+                "tlsVersion": "",
+                "trustSecId": ""
+              },
+              "peer": {
+                "hostGroupIds": [],
+                "countryCode": "",
+                "ipAddress": "",
+                "natPort": "",
+                "portProtocol": {
+                  "protocol": "",
+                  "port": "",
+                  "serviceId": ""
+                },
+                "percentBytes": "",
+                "bytes": "",
+                "packets": "",
+                "byteRate": "",
+                "packetRate": "",
+                "orientation": "",
+                "finPackets": "",
+                "rstPackets": "",
+                "synPackets": "",
+                "synAckPackets": "",
+                "tlsVersion": "",
+                "trustSecId": ""
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "operation": "list_host_groups",
+      "title": "Get Host Groups List",
+      "description": "Retrieves all host groups (tags) for the specific tenant (domain) ID and host type you have specified.",
+      "category": "investigation",
+      "annotation": "list_host_groups",
+      "parameters": [
+        {
+          "title": "Tenant ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "tenant_id",
+          "tooltip": "Domain ID",
+          "description": "ID of the tenant (domain) whose host tags (groups) you want to retrieve from Cisco Stealthwatch. ID of the tenant  whose all tags user want to retrieve."
+        },
+        {
+          "title": "Type",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "options": [
+            "Custom Hosts",
+            "External Geos",
+            "External Hosts",
+            "External Threats",
+            "Internal Hosts"
+          ],
+          "value": "External Threats",
+          "name": "host_type",
+          "description": "Select the host type whose list of groups you want to retrieve from Cisco Stealthwatch. You can choose between Custom Hosts, External Geos, External Hosts, External Threats, or Internal Hosts."
+        },
+        {
+          "title": "Hierarchy View",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "checkbox",
+          "name": "hierarchy_view",
+          "value": false,
+          "description": "(Optional) Select this option to retrieve all the tags, organized in an hierarchical manner, for the specified Tenant (domain)."
+        }
+      ],
+      "enabled": true,
+      "conditional_output_schema": [
+        {
+          "condition": "{{hierarchy_view === true}}",
+          "output_schema": {
+            "data": {
+              "id": "",
+              "displayName": "",
+              "tags": [
+                {
+                  "displayName": "",
+                  "tags": [
+                    {
+                      "displayName": "",
+                      "tags": [],
+                      "id": ""
+                    }
+                  ],
+                  "id": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "condition": "{{true}}",
+          "output_schema": {
+            "data": [
+              {
+                "id": "",
+                "displayName": ""
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "operation": "get_host_details",
+      "title": "Get Host Group Details",
+      "description": "Retrieves details of host group (tag) based on the tenant (domain) ID and host type you have specified. You can also optionally specify the host group ID to further filter the results and retrieve details only for the specified host group ID.",
+      "category": "investigation",
+      "annotation": "get_host_details",
+      "parameters": [
+        {
+          "title": "Tenant ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "tenant_id",
+          "tooltip": "Domain ID",
+          "description": "ID of the tenant whose host tags (groups) details you want to retrieve from Cisco Stealthwatch."
+        },
+        {
+          "title": "Type",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "options": [
+            "Custom Hosts",
+            "External Geos",
+            "External Hosts",
+            "External Threats",
+            "Internal Hosts"
+          ],
+          "value": "External Threats",
+          "name": "host_type",
+          "description": "Select the host type whose group details you want to retrieve from Cisco Stealthwatch. You can choose between Custom Hosts, External Geos, External Hosts, External Threats, or Internal Hosts."
+        },
+        {
+          "title": "Host Group ID",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "hostGroupId",
+          "tooltip": "Tag ID",
+          "description": "(Optional) ID of the host group (tag) whose details you want to retrieve from Cisco Stealthwatch."
+        }
+      ],
+      "enabled": true,
+      "output_schema": {
+        "data": {
+          "id": "",
+          "displayName": ""
+        }
+      }
+    },
+    {
+      "operation": "threats_top_alarms",
+      "title": "Get External Threats Top Alarm Host",
+      "description": "Retrieves the top alarming hosts for an external threat tag (tagId) for a specific Tenant or Domain (tenantId).",
+      "category": "investigation",
+      "annotation": "threats_top_alarms",
+      "parameters": [
+        {
+          "title": "Tenant ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "tenantId",
+          "tooltip": "Domain ID",
+          "description": "ID of the tenant (domain) whose host group (tag) alarms you want to retrieve from Cisco Stealthwatch."
+        },
+        {
+          "title": "External Threat Tag ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "tagId",
+          "tooltip": "External Threat Host Group ID",
+          "description": "The External Threat Tag (tagId) for which you want to retrieves the top alarming hosts from Cisco Stealthwatch."
+        }
+      ],
+      "enabled": true,
+      "output_schema": {
+        "data": {
+          "data": [
+            {
+              "sourceCategoryEvents": [
+                {
+                  "severity": "",
+                  "typeId": "",
+                  "alwaysBadCount": ""
+                }
+              ],
+              "sourceSecurityEvents": [
+                {
+                  "severity": "",
+                  "typeId": "",
+                  "alwaysBadCount": ""
+                }
+              ],
+              "ipAddress": "",
+              "targetSecurityEvents": [],
+              "hostGroupIds": [],
+              "targetCategoryEvents": []
+            }
+          ],
+          "header": {
+            "startTime": "",
+            "endTime": ""
+          }
+        }
+      }
+    },
+    {
+      "operation": "top_conversation_flow",
+      "title": "Initiate Top Conversation Flow Search",
+      "description": "Initiates a top conversation flow report search on Cisco Stealthwatch, based on the tenant (domain) ID, search name, and other filters you have specified.",
+      "category": "investigation",
+      "annotation": "top_conversation_flow",
+      "parameters": [
+        {
+          "title": "Tenant ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "tenant_id",
+          "tooltip": "Domain ID",
+          "description": "ID of the tenant (domain) for which you want to initiate a top conversation flow search on Cisco Stealthwatch ."
+        },
+        {
+          "title": "Start Time",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "datetime",
+          "name": "startTime",
+          "tooltip": "Must not occur after End Time",
+          "description": "Start Time from when you want to initiate the flow search on Cisco Stealthwatch . This value must not occur after the End Time."
+        },
+        {
+          "title": "End Time",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "datetime",
+          "name": "endTime",
+          "description": "End Time till when you want to initiate the flow search on Cisco Stealthwatch . This value must not occur before the Start Time.",
+          "tooltip": "Must not occur before Start Time"
+        },
+        {
+          "title": "Search Name",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "searchName",
+          "description": "Name of the search that you want to initiate on Cisco Stealthwatch ."
+        },
+        {
+          "title": "Number of Records",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "maxRows",
+          "value": 50,
+          "tooltip": "Maximum number of flow records to return. You can specify within 1-5000 range.",
+          "description": "(Optional) Maximum number of top conversation flow reports that you want this operation to return from Cisco Stealthwatch . The maximum value for this field is 5000. Its default value is 50."
+        },
+        {
+          "title": "Orientation",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "options": [
+            "EITHER",
+            "CLIENT",
+            "SERVER"
+          ],
+          "name": "orientation",
+          "value": "EITHER",
+          "description": "(Optional) This parameter determines whether the subject information is considered to be part of the client or the server or either. The value must be one of the following: EITHER (Default), CLIENT, or SERVER."
+        },
+        {
+          "title": "Order By",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "options": [
+            "TOTAL_BYTES",
+            "TOTAL_PACKETS",
+            "TOTAL_FLOWS",
+            "TOTAL_CONNECTIONS"
+          ],
+          "name": "orderBy",
+          "value": "TOTAL_BYTES",
+          "description": "(Optional) The order based on which the records will be retrieved and sorted (i.e. Bytes or Packets or Flows or TCP Connection). The value must be one of the following: TOTAL_BYTES (Default), TOTAL_PACKETS, TOTAL_FLOWS, TOTAL_CONNECTIONS."
+        },
+        {
+          "title": "Default Columns",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "checkbox",
+          "name": "standardOptions",
+          "value": true,
+          "tooltip": "Flag to return the default columns",
+          "description": "Select this option, i.e., set it to 'true' (default) if you want this operation to set the implicit fields that are part of Advanced Options to their default values. Advanced Options have Excludes BPS/PPS, Exclude Other Records and Exclude Counts params. Default value: true"
+        },
+        {
+          "title": "Excludes BPS/PPS",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "checkbox",
+          "name": "excludeBpsPps",
+          "value": true,
+          "tooltip": "Flag to excludes BPS/PPS values",
+          "description": "Select this option, i.e., set it to 'true' (default) if you want this operation to exclude BPS/PPS values."
+        },
+        {
+          "title": "Exclude Other Records",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "checkbox",
+          "name": "excludeOthers",
+          "value": true,
+          "tooltip": "Flag to excludes other records",
+          "description": "Select this option, i.e., set it to 'true' (default) if you want this operation to exclude Other Records."
+        },
+        {
+          "title": "Exclude Counts",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "checkbox",
+          "name": "excludeCounts",
+          "value": false,
+          "tooltip": "Flag to excludes Counts",
+          "description": "Select this option, i.e., set it to 'true' if you want this operation to exclude Counts."
+        },
+        {
+          "title": "Flow Collectors",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "flowCollectors",
+          "value": "",
+          "placeholder": "162, 122, 321",
+          "tooltip": "CSV or list of flow collector IDs",
+          "description": "(Optional) Specify the list of flow collector IDs that the system will search and based on which you want to initiate a flow search on Cisco Stealthwwatch. If you do not specify any flow collector ID, then the system will search all the flow collectors."
+        },
+        {
+          "title": "Subject Host Filters",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "subject",
+          "value": {
+            "ipAddresses": {
+              "includes": [],
+              "excludes": []
+            },
+            "tags": {
+              "includes": [],
+              "excludes": []
+            }
+          },
+          "description": "(Optional) Specify the collection of subject host filters in the JSON format, based on which you want to initiate a top conversation flow search on Cisco Stealthwatch."
+        },
+        {
+          "title": "Peer Host Filters",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "peer",
+          "value": {
+            "ipAddresses": {
+              "includes": [],
+              "excludes": []
+            },
+            "tags": {
+              "includes": [],
+              "excludes": []
+            }
+          },
+          "description": "(Optional) Specify the collection of peer host filters in the JSON format, based on which you want to initiate a top conversation flow search on Cisco Stealthwatch."
+        },
+        {
+          "title": "Connection Filters",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "connection",
+          "value": {
+            "applications": {
+              "includes": [],
+              "excludes": []
+            },
+            "direction": "",
+            "portProtocols": {
+              "includes": [],
+              "excludes": []
+            }
+          },
+          "description": "(Optional) Specify the connection filters in the JSON format, based on which you want to initiate a top conversation flow search on Cisco Stealthwatch."
+        }
+      ],
+      "enabled": true,
+      "output_schema": {
+        "data": {
+          "status": "",
+          "queryId": ""
+        }
+      }
+    },
+    {
+      "operation": "get_top_conversation_status",
+      "title": "Get Top Conversation Flow Search Status",
+      "description": "Retrieves the status of a specified top conversation flow search, based on the tenant (domain) ID and query ID you have specified.",
+      "parameters": [
+        {
+          "title": "Tenant ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "tenant_id",
+          "tooltip": "Domain ID",
+          "description": "ID of the tenant (domain) whose top conversation flow search status you want to retrieve from Cisco Stealthwatch ."
+        },
+        {
+          "title": "Query ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "query_id",
+          "description": "ID of the query whose top conversation flow search status you want to retrieve from Cisco Stealthwatch.\nNote: You can retrieve the Query ID using the \"Initiate Top Conversation Flow Search\" operation.",
+          "placeholder": "e.g 58b9394b60b2998c00cd63f7"
+        }
+      ],
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_top_conversation_status",
+      "output_schema": {
+        "data": {
+          "queryId": "",
+          "status": ""
+        }
+      }
+    },
+    {
+      "operation": "get_top_conversation_result",
+      "title": "Get Top Conversation Flow Search Result",
+      "description": "Retrieves the result of a specified top conversation flow search, based on the tenant (domain) ID and query ID you have specified.",
+      "parameters": [
+        {
+          "title": "Tenant ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "tenant_id",
+          "tooltip": "Domain ID",
+          "description": "ID of the tenant (domain) whose top conversation flow search result you want to retrieve from Cisco Stealthwatch ."
+        },
+        {
+          "title": "Query ID",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "query_id",
+          "description": "ID of the query whose top conversation flow search result you want to retrieve from Cisco Stealthwatch.\nNote: You can retrieve a Query ID using the \"Initiate Top Conversation Flow Search\" operation.",
+          "placeholder": "e.g 58b9394b60b2998c00cd63f7"
+        }
+      ],
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_top_conversation_result",
+      "output_schema": {
+        "data": {
+          "results": [
+            {
+              "records": "",
+              "hostClientPackets": "",
+              "peerServerBytes": "",
+              "port": "",
+              "flows": "",
+              "packetRateAvg": "",
+              "connections": "",
+              "trafficRateAvg": "",
+              "protocol": "",
+              "hostClients": "",
+              "peerConnections": "",
+              "hostBytes": "",
+              "hostServers": "",
+              "peerBytesRatio": "",
+              "rank": "",
+              "trafficRate95th": "",
+              "hostServerBytes": "",
+              "peerRole": "",
+              "peerPackets": "",
+              "peerClientPackets": "",
+              "hosts": "",
+              "serverBytesRatio": "",
+              "hostPackets": "",
+              "packetRate95th": "",
+              "peerServerPackets": "",
+              "trafficRateMin": "",
+              "protocolNumber": "",
+              "hostClientBytes": "",
+              "hostServerPackets": "",
+              "peers": "",
+              "hostRole": "",
+              "peerClientBytes": "",
+              "host": {
+                "ipAddress": "",
+                "hostGroupIds": [],
+                "country": ""
+              },
+              "peerClients": "",
+              "hostBytesRatio": "",
+              "hostFlows": "",
+              "deviceId": "",
+              "packetRateMax": "",
+              "trafficRateMax": "",
+              "packetRateMin": "",
+              "portProtocol": {
+                "protocol": "",
+                "port": "",
+                "service": {
+                  "protocol": "",
+                  "id": ""
+                }
+              },
+              "hostConnections": "",
+              "peerBytes": "",
+              "percent": "",
+              "clientBytesRatio": "",
+              "peer": {
+                "ipAddress": "",
+                "hostGroupIds": [],
+                "country": ""
+              },
+              "packets": "",
+              "peerServers": "",
+              "peerFlows": "",
+              "bytes": ""
+            }
+          ],
+          "summary": {
+            "records": "",
+            "hostClientBytes": "",
+            "peerClientBytes": "",
+            "deviceId": "",
+            "peerServerBytes": "",
+            "hostPackets": "",
+            "peers": "",
+            "flows": "",
+            "packetRateAvg": "",
+            "connections": "",
+            "trafficRateAvg": "",
+            "hostClients": "",
+            "hostBytesRatio": "",
+            "hostFlows": "",
+            "peerBytes": "",
+            "hostClientPackets": "",
+            "peerServers": "",
+            "peerConnections": "",
+            "peerBytesRatio": "",
+            "packetRateMax": "",
+            "hostRole": "",
+            "trafficRateMax": "",
+            "hostBytes": "",
+            "packetRateMin": "",
+            "hostServerPackets": "",
+            "hostServers": "",
+            "hostConnections": "",
+            "bytes": "",
+            "trafficRate95th": "",
+            "percent": "",
+            "clientBytesRatio": "",
+            "hostServerBytes": "",
+            "peerRole": "",
+            "peerPackets": "",
+            "packets": "",
+            "peerClientPackets": "",
+            "hosts": "",
+            "serverBytesRatio": "",
+            "peerFlows": "",
+            "packetRate95th": "",
+            "peerServerPackets": "",
+            "trafficRateMin": "",
+            "peerClients": ""
+          },
+          "others": {
+            "bytes": "",
+            "flows": "",
+            "hosts": "",
+            "peers": "",
+            "packets": "",
+            "percent": "",
+            "records": "",
+            "deviceId": "",
+            "hostRole": "",
+            "peerRole": "",
+            "hostBytes": "",
+            "hostFlows": "",
+            "peerBytes": "",
+            "peerFlows": "",
+            "connections": "",
+            "hostClients": "",
+            "hostPackets": "",
+            "hostServers": "",
+            "peerClients": "",
+            "peerPackets": "",
+            "peerServers": "",
+            "packetRateAvg": "",
+            "packetRateMax": "",
+            "packetRateMin": "",
+            "hostBytesRatio": "",
+            "packetRate95th": "",
+            "peerBytesRatio": "",
+            "trafficRateAvg": "",
+            "trafficRateMax": "",
+            "trafficRateMin": "",
+            "hostClientBytes": "",
+            "hostConnections": "",
+            "hostServerBytes": "",
+            "peerClientBytes": "",
+            "peerConnections": "",
+            "peerServerBytes": "",
+            "trafficRate95th": "",
+            "clientBytesRatio": "",
+            "serverBytesRatio": "",
+            "hostClientPackets": "",
+            "hostServerPackets": "",
+            "peerClientPackets": "",
+            "peerServerPackets": ""
+          }
+        }
+      }
+    }
+  ]
+}
