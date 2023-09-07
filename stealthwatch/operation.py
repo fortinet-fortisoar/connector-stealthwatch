@@ -93,9 +93,11 @@ def make_rest_call(config, endpoint='', method="GET", params=None, data=None, bo
     """Common handler for all HTmake_rest_callTP requests."""
     try:
         server_url, username, password, verify_ssl = get_config_params(config)
-        cookie = get_token(server_url, username, password, verify_ssl)
+        cookies = get_token(server_url, username, password, verify_ssl)
         url = server_url + endpoint
-        headers = {'Cookie': cookie}
+        headers = {'Cookie': cookies[0],
+                   'X-XSRF-TOKEN': cookies[1]
+                  }
         logger.info('Making API call with url {0}'.format(url))
         response = request(method=method, url=url, headers=headers, data=data, json=body, params=params,
                            verify=verify_ssl)
@@ -154,9 +156,11 @@ def get_token(server_url, username, password, verify_ssl):
         url = server_url + api_auth
         api_response = requests.post(url, data=params, headers=headers, verify=verify_ssl)
         if api_response.ok:
+            logger.debug('Cookies: {0}'.format(str(api_response.cookies)))
             cookies = api_response.cookies['stealthwatch.jwt']
             cookies = 'stealthwatch.jwt=' + cookies
-            return cookies
+            xsrfCookies = api_response.cookies['XSRF-TOKEN']
+            return [ cookies, xsrfCookies ]
         else:
             logger.error(
                 'Error to request url: {url} {text} with reason: {reason}'.format(url=url, text=api_response.text,
@@ -387,6 +391,16 @@ def get_top_conversation_result(config, params, **kwargs):
         logger.error("{0}".format(str(err)))
         raise ConnectorError("{0}".format(str(err)))
 
+def initiate_flow_analysis(config, params, **kwargs):
+    try:
+        tenant_id = params.get("tenantID")
+        payload = params.get("flowAnalysis")
+        logger.debug('Payload: {0}'.format(str(payload)))
+        endpoint = flowanalysis.format(tenantId=tenant_id)
+        return make_rest_call(config, endpoint, method="POST", body=payload)
+    except Exception as err:
+        logger.debug("{0}".format(str(err)))
+        raise ConnectorError("{0}".format(str(err)))
 
 operations = {
     'application_traffic_domainid': application_traffic_domainid,
@@ -401,5 +415,6 @@ operations = {
     'threats_top_alarms': threats_top_alarms,
     'top_conversation_flow': top_conversation_flow,
     'get_top_conversation_status': get_top_conversation_status,
-    'get_top_conversation_result': get_top_conversation_result
+    'get_top_conversation_result': get_top_conversation_result,
+    'initiate_flow_analysis': initiate_flow_analysis
 }
