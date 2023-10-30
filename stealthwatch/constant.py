@@ -1,5 +1,5 @@
 """ Copyright start
-  Copyright (C) 2008 - 2021 Fortinet Inc.
+  Copyright (C) 2008 - 2023 Fortinet Inc.
   All rights reserved.
   FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
   Copyright end """
@@ -27,6 +27,7 @@ tenant_alarms = '/sw-reporting/v1/tenants/{tenantId}/externalThreats/alarms/topH
 flow_search = '/sw-reporting/v2/tenants/{tenantId}/flows/queries'
 top_conversation = '/sw-reporting/v1/tenants/{tenantId}/flow-reports/top-conversations/queries'
 top_conversation_result = '/sw-reporting/v1/tenants/{tenantId}/flow-reports/top-conversations/results/{queryId}'
+flowanalysis = '/smc/rest/domains/{tenantId}/searches'
 
 empty_value = [{
     "applicationId": "",
