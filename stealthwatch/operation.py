@@ -205,8 +205,8 @@ def application_traffic_domainid(config, params, **kwargs):
 
 def application_traffic_ip(config, params, **kwargs):
     try:
-        exporterip = params.get('exporterip')
-        flowcollectordeviceid = params.get('flowcollectordeviceid')
+        exporter_ip = params.get('exporterip')
+        flow_collector_device_id = params.get('flowcollectordeviceid')
         interface = params.get('interface')
         domain_id = params.get('domain_id')
         start = params.get('start', None)
@@ -217,7 +217,7 @@ def application_traffic_ip(config, params, **kwargs):
         if end:
             query_params.update({'end': end})
         url = str(api_application_traffic_exporterip[0]) + str(domain_id) + str(
-            api_application_traffic_exporterip[1]) + str(flowcollectordeviceid) + '/' + str(exporterip) + '/' + str(
+            api_application_traffic_exporterip[1]) + str(flow_collector_device_id) + '/' + str(exporter_ip) + '/' + str(
             interface) + str(api_application_traffic_exporterip[2])
         api_response = make_rest_call(config, endpoint=url, params=query_params, flag=True)
         return api_response
@@ -229,10 +229,10 @@ def application_traffic_ip(config, params, **kwargs):
 def application_traffic_hostgroupid(config, params, **kwargs):
     try:
         domain_id = params.get('domain_id')
-        hostgroupid = params.get('hostgroupid')
+        host_grou_pid = params.get('hostgroupid')
         remove_keys(params, ['domain_id', 'hostgroupid'])
         url = str(api_application_traffic_hostgroupid[0]) + str(domain_id) + str(
-            api_application_traffic_hostgroupid[1]) + str(hostgroupid) + str(api_application_traffic_hostgroupid[2])
+            api_application_traffic_hostgroupid[1]) + str(host_grou_pid) + str(api_application_traffic_hostgroupid[2])
         query_params = build_payload(params)
         api_response = make_rest_call(config, endpoint=url, params=query_params, flag=True)
         return api_response
@@ -292,8 +292,8 @@ def get_host_details(config, params, **kwargs):
     try:
         tenant_id = params.get("tenant_id")
         host_type = PARAM_MAPPING.get(params.get("host_type"))
-        hostGroupId = params.get("hostGroupId")
-        endpoint = list_host.format(tenantId=tenant_id, host_type=host_type) + '/{id}'.format(id=hostGroupId)
+        host_group_id = params.get("hostGroupId")
+        endpoint = list_host.format(tenantId=tenant_id, host_type=host_type) + '/{id}'.format(id=host_group_id)
         res = make_rest_call(config, endpoint)
         return res
     except Exception as Err:
@@ -346,11 +346,11 @@ def remove_keys(params, keys):
 
 def threats_top_alarms(config, params, **kwargs):
     try:
-        tenantId = params.get('tenantId')
-        tagId = params.get('tagId')
+        tenant_id = params.get('tenantId')
+        tag_id = params.get('tagId')
         remove_keys(params, ['tenantId', 'tagId'])
         query_params = build_payload(params)
-        res = make_rest_call(config, endpoint=threats_alarms.format(tenantId=tenantId, tagId=tagId),
+        res = make_rest_call(config, endpoint=threats_alarms.format(tenantId=tenant_id, tagId=tag_id),
                              params=query_params)
         return res
     except Exception as Err:
