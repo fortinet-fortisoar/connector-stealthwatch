@@ -3,7 +3,7 @@
   "data": [
     {
       "@type": "WorkflowCollection",
-      "name": "Sample - Cisco Stealthwatch - 2.0.0",
+      "name": "Sample - Cisco Stealthwatch - 2.1.0",
       "description": "Stealthwatch is the solution that detects threats across your private network, public clouds, and even in encrypted traffic.",
       "visible": true,
       "image": null,
@@ -60,7 +60,7 @@
                   "start": "",
                   "domain_id": "123"
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "stealthwatch",
                 "operation": "application_traffic_domainid",
                 "operationTitle": "Get Application Traffic by Domain ID",
@@ -149,7 +149,7 @@
                   "domain_id": "123",
                   "hostgroupid": "169"
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "stealthwatch",
                 "operation": "application_traffic_hostgroupid",
                 "operationTitle": "Get Application Traffic by Host Group ID",
@@ -240,7 +240,7 @@
                   "exporterip": "172.16.97.1",
                   "flowcollectordeviceid": "129"
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "stealthwatch",
                 "operation": "application_traffic_ip",
                 "operationTitle": "Get Application Traffic by Exporter IP",
@@ -324,7 +324,7 @@
                 "name": "Cisco Stealthwatch",
                 "config": "",
                 "params": [],
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "stealthwatch",
                 "operation": "get_domain_details",
                 "operationTitle": "Get Domain Details",
@@ -411,7 +411,7 @@
                   "query_id": "5f58dcb960b2d1893cc0c418",
                   "tenant_id": "123"
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "stealthwatch",
                 "operation": "get_flow_search_status",
                 "operationTitle": "Get Flow Search Status",
@@ -473,7 +473,7 @@
                   "query_id": "5f58dcb960b2d1893cc0c418",
                   "tenant_id": "123"
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "stealthwatch",
                 "operation": "get_flow_search_results",
                 "operationTitle": "Get Flow Search Results",
@@ -586,7 +586,7 @@
                   "tenant_id": "123",
                   "hierarchy_view": false
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "stealthwatch",
                 "operation": "list_host_groups",
                 "operationTitle": "Get Host Groups List",
@@ -649,7 +649,7 @@
                   "tenant_id": "123",
                   "hostGroupId": "64"
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "stealthwatch",
                 "operation": "get_host_details",
                 "operationTitle": "Get Host Group Details",
@@ -738,7 +738,7 @@
                   "tagId": "63000",
                   "tenantId": "123"
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "stealthwatch",
                 "operation": "threats_top_alarms",
                 "operationTitle": "Get External Threats Top Alarm Host",
@@ -825,7 +825,7 @@
                   "query_id": "5f56034e60b2d1893cc0b3a9",
                   "tenant_id": "123"
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "stealthwatch",
                 "operation": "get_top_conversation_result",
                 "operationTitle": "Get Top Conversation Flow Search Result",
@@ -1092,7 +1092,7 @@
                   "recordLimit": "1000",
                   "startDateTime": "2020-09-03T18:30:00.000Z"
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "stealthwatch",
                 "operation": "initiate_flow_search",
                 "operationTitle": "Initiate Flow Search",
@@ -1152,6 +1152,111 @@
           ],
           "isPrivate": false,
           "owners": []
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Initiate Flow Analysis",
+          "aliasName": null,
+          "tag": "#Cisco Stealthwatch",
+          "description": "Initiates a top conversation flow report search on Cisco Stealthwatch, based on the tenant (domain) ID, advance search filter as JSON.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1698914399,
+          "collection": "/api/3/workflow_collections/d2a32c03-6120-406f-a2db-f0fdc4c405f0",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/70610b98-dc34-40b0-8457-6bca3a626167",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "cefd6b4a-91cc-4b65-9065-12c76431b510",
+                "title": "Cisco Stealthwatch: Initiate Flow Analysis",
+                "resources": [
+                  "alerts"
+                ],
+                "__triggerLimit": true,
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "triggerOnSource": true,
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "showToasterMessage": {
+                  "visible": false,
+                  "messageVisible": true
+                },
+                "triggerOnReplicate": false,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "70610b98-dc34-40b0-8457-6bca3a626167"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Initiate Flow Analysis",
+              "description": null,
+              "arguments": {
+                "name": "Cisco Stealthwatch",
+                "config": "test",
+                "params": {
+                  "tenantID": "123",
+                  "flowAnalysis": ""
+                },
+                "version": "2.1.0",
+                "connector": "stealthwatch",
+                "operation": "initiate_flow_analysis",
+                "operationTitle": "Initiate Flow Analysis",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "f38b112e-c05a-4e5e-b1f9-83c98133e457"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Initiate Flow Search",
+              "targetStep": "/api/3/workflow_steps/f38b112e-c05a-4e5e-b1f9-83c98133e457",
+              "sourceStep": "/api/3/workflow_steps/70610b98-dc34-40b0-8457-6bca3a626167",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "4e3df239-98af-45a2-ab9f-b60e5f43d003"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "16792899-4499-4cd0-966e-ae66ea292c46",
+          "id": 1487,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Cisco",
+            "stealthwatch"
+          ]
         },
         {
           "@type": "Workflow",
@@ -1247,7 +1352,7 @@
                   "flowCollectors": "",
                   "standardOptions": true
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "stealthwatch",
                 "operation": "top_conversation_flow",
                 "operationTitle": "Initiate Top Conversation Flow Search",
@@ -1334,7 +1439,7 @@
                   "query_id": "5f56034e60b2d1893cc0b3a9",
                   "tenant_id": "123"
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "stealthwatch",
                 "operation": "get_top_conversation_status",
                 "operationTitle": "Get Top Conversation Flow Search Status",

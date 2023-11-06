@@ -2,14 +2,14 @@
   "name": "stealthwatch",
   "label": "Cisco Stealthwatch",
   "description": "Stealthwatch is the solution that detects threats across your private network, public clouds, and even in encrypted traffic.",
-  "publisher": "Community",
+  "publisher": "Fortinet",
   "cs_approved": true,
   "cs_compatible": true,
-  "version": "2.0.0",
+  "version": "2.1.0",
   "category": "Threat Detector",
   "icon_small_name": "Cisco_StealthWatch_32X32.png",
   "icon_large_name": "Cisco_StealthWatch_80X80.png",
-  "help_online": "https://docs.fortinet.com/document/fortisoar/2.0.0/cisco-stealthwatch/112/cisco-stealthwatch-v2-0-0",
+  "help_online": "",
   "configuration": {
     "fields": [
       {
