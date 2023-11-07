@@ -166,11 +166,11 @@ def get_token(server_url, username, password, verify_ssl):
                 'Error to request url: {url} {text} with reason: {reason}'.format(url=url, text=api_response.text,
                                                                                   reason=api_response.reason))
             raise ConnectorError('Invalid URL or Credentials.')
-    except req_exceptions.SSLError:
-        logger.error('An SSL error occurred')
+    except req_exceptions.SSLError as e:
+        logger.error('An SSL error occurred: {}'.format(e))
         raise ConnectorError('An SSL error occurred')
-    except requests.exceptions.ConnectionError:
-        status_code = "Invalid endpoint"
+    except requests.exceptions.ConnectionError as e:
+        status_code = "Invalid endpoint: {}".format(e)
         raise ConnectorError(status_code)
     except Exception as Err:
         logger.exception("Cookies generation fail: {0}".format(str(Err)))
