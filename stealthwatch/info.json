@@ -9,7 +9,7 @@
   "category": "Threat Detector",
   "icon_small_name": "Cisco_StealthWatch_32X32.png",
   "icon_large_name": "Cisco_StealthWatch_80X80.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/2.1.0/cisco-stealthwatch/727/cisco-stealthwatch-v2-1-0",
   "configuration": {
     "fields": [
       {
